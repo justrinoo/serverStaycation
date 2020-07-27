@@ -1,0 +1,72 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<!-- Button trigger modal -->
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target="#bankModal"
+		>
+			<i class="fas fa-plus"></i>
+		</button>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table
+				class="table table-bordered"
+				id="dataTable"
+				width="100%"
+				cellspacing="0"
+			>
+			
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Name Bank</th>
+					<th>Nomor Rekening</th>
+					<th>Name</th>
+					<th>Image</th>
+					<th>Action</th>
+				</tr>
+				<% for( let i = 0; i < bank.length; i++ ) { %>
+				<tbody>
+						<tr>
+							<td><%= i + 1 %> </td>
+							<td><%= bank[i].nameBank %> </td>
+							<td><%= bank[i].nomorRekening %> </td>
+							<td><%= bank[i].name %> </td>
+							<td><img src="http://localhost:3000/<%= bank[i].imageUrl %>" width="60" alt="<%= bank[i].nameBank %>"> </td>
+							<td>
+								<form
+									action="/admin/bank/<%= bank[i].id %>?_method=DELETE"
+									method="POST"
+								>
+									<button
+										href="javascript:void()"
+										type="button"
+										class="btn btn-warning btn-circle btn-sm ml-2 button-update"
+										data-id="<%=  bank[i].id %>"
+										data-name="<%=  bank[i].name %>"
+										data-namebank="<%=  bank[i].nameBank %>"
+										data-nomorrekening="<%=  bank[i].nomorRekening %>"
+									>
+										<i class="fas fa-edit"></i>
+									</button>
+	
+									<button
+										type="submit"
+										class="btn btn-danger btn-circle btn-sm ml-2"
+									>
+										<i class="fas fa-trash"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+					<% } %>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
