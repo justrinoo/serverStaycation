@@ -1,0 +1,18 @@
+<!-- DataTales Example -->
+<div class="row">
+	<% for( let i = 0; i < item.imageId.length; i++ ) { %>
+	<div class="col-md-5">
+		<div class="card shadow mb-4 mt-3">
+			<div class="card-body">
+				<img
+					src="http://localhost:3000/<%= item.imageId[i].imageUrl %>"
+					alt="<%= item.imageId[i].id %> "
+					style="max-width: 100%; width: 50%; display: block; margin: auto;"
+				/>
+			</div>
+		</div>
+	</div>
+	<% } %>
+</div>
+
+<a href="/admin/item" class="btn btn-sm btn-info">Go to back item</a>

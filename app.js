@@ -6,7 +6,6 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
-const multer = require("multer");
 // configuration database mongoo
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/dbstaycation", {

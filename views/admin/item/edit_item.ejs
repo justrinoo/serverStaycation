@@ -1,0 +1,71 @@
+<div class="card">
+	<div class="card-body">
+		<form
+			action="/admin/item/<%= item.id %>?_method=PUT "
+			method="POST"
+			enctype="multipart/form-data"
+		>
+			<div class="form-group">
+				<label for="name">Title</label>
+				<input
+					type="text"
+					class="form-control"
+					name="title"
+					placeholder="Enter title"
+					value="<%= item.title %>"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="name">Price</label>
+				<input
+					type="number"
+					class="form-control"
+					name="price"
+					placeholder="Enter price"
+					value="<%= item.price %>"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="name">City</label>
+				<input
+					type="text"
+					class="form-control"
+					name="city"
+					value="<%= item.city %>"
+					placeholder="Enter city"
+					required
+				/>
+			</div>
+			<div class="form-group">
+				<label for="name">Category</label>
+				<select class="form-control" name="categoryId">
+					<option value="<%= item.categoryId.id %>">
+						<%= item.categoryId.name %>
+					</option>
+					<% for(let i = 0; i< category.length; i++){ %>
+					<option value="<%= category[i].id %>"><%= category[i].name %></option>
+					<%}%>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="name">Image</label>
+				<input
+					type="file"
+					class="form-control"
+					name="image"
+					value="<%= item.imageId.imageUrl %>"
+					multiple
+				/>
+			</div>
+			<div class="form-group">
+				<label for="name">Description</label>
+				<textarea name="about" class="form-control" value="<%= item.title %> ">
+<%= item.description %></textarea
+				>
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>
+</div>
