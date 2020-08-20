@@ -1,0 +1,116 @@
+<div
+	class="tab-pane fade show active"
+	id="show-feature"
+	role="tabpanel"
+	aria-labelledby="home-tab"
+>
+	<!-- DataTales Example -->
+
+	<div class="card shadow mb-4 mt-3">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-5">
+					<form
+						method="POST"
+						action="/admin/item/add/feature"
+						enctype="multipart/form-data"
+					>
+						<div class="form-group">
+							<label for="name" class="col-form-label">Name:</label>
+							<input
+								type="text"
+								class="form-control"
+								id="name"
+								name="name"
+								autocomplete="off"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-form-label">Qty:</label>
+							<input
+								type="number"
+								class="form-control"
+								id="qty"
+								name="qty"
+								autocomplete="off"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="name" class="col-form-label">Image:</label>
+							<input
+								type="file"
+								class="form-control"
+								id="imageurl"
+								name="imageurl"
+							/>
+						</div>
+						<input type="hidden" value="<%= itemId %>" name="itemId" />
+						<button type="submit" class="btn btn-primary">
+							Save
+						</button>
+					</form>
+				</div>
+				<div class="col-md-7">
+					<div class="table-responsive">
+						<table
+							class="table table-bordered"
+							id="dataTable"
+							width="100%"
+							cellspacing="0"
+						>
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Name</th>
+									<th>Qty</th>
+									<th>Image</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<% for( let x = 0; x < feature.length; x++ ) { %>
+							<tbody>
+								<tr>
+									<td><%= x + 1 %></td>
+									<td><%= feature[x].name %></td>
+									<td><%= feature[x].qty %></td>
+									<td>
+										<img
+											src="http://localhost:3000/<%= feature[x].imageUrl %>"
+											width="100"
+											alt="<%= feature[x].name %>"
+										/>
+									</td>
+									<td>
+										<form
+											action="/admin/item/<%= itemId %>/feature/<%= feature[x].id %>?_method=DELETE"
+											method="POST"
+										>
+											<button
+												href="javascript:void()"
+												type="button"
+												class="btn btn-warning btn-circle btn-sm ml-2 button-update"
+												data-id="<%=  feature[x].id %>"
+												data-name="<%=  feature[x].name %>"
+												data-qty="<%=  feature[x].qty %>"
+											>
+												<i class="fas fa-edit"></i>
+											</button>
+
+											<button
+												type="submit"
+												class="btn btn-danger btn-circle btn-sm ml-2"
+											>
+												<i class="fas fa-trash"></i>
+											</button>
+										</form>
+									</td>
+								</tr>
+							</tbody>
+							<% } %>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

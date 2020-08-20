@@ -27,12 +27,16 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
+
 app.use(
 	session({
 		secret: "keyboard cat",
-		resave: false,
+		resave: true,
 		saveUninitialized: true,
-		cookie: { maxAge: 60000 },
+		cookie: {
+			expires: new Date(Date.now() + 60 * 10000),
+			maxAge: 60 * 10000,
+		},
 	})
 );
 app.use(flash());
