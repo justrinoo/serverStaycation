@@ -17,7 +17,7 @@ mongoose.connect("mongodb://localhost:27017/dbstaycation", {
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+let apiRouter = require("./routes/api");
 // Area Admin
 const adminRouter = require("./routes/admin");
 
@@ -52,6 +52,10 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+// api
+app.use("/api/v1", apiRouter);
+
 // admin
 app.use("/admin", adminRouter);
 

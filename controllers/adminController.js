@@ -67,10 +67,36 @@ module.exports = {
 		});
 	},
 	viewDashboard: async (req, res) => {
-		res.render("admin/dashboard/view_dashboard", {
-			title: "Staycation | Dashboard",
-			user: req.session.user,
-		});
+		try {
+			const member = await Member.find();
+			const total_booking = await Booking.find().select();
+			console.log(total_booking);
+			let bookingPending = 0;
+			let bookingAccept = 0;
+			total_booking.forEach((data) => {
+				if (data.payments.status === "Pending") {
+					bookingPending += 1;
+				} else if (data.payments.status === "Accept") {
+					bookingAccept += 1;
+				}
+			});
+			console.log("ini total booking pending");
+			console.log(bookingPending);
+			console.log("ini total booking accept");
+			console.log(bookingAccept);
+			const item = await Item.find();
+			res.render("admin/dashboard/view_dashboard", {
+				title: "Staycation | Dashboard",
+				user: req.session.user,
+				member,
+				total_booking,
+				bookingAccept,
+				bookingPending,
+				item,
+			});
+		} catch (error) {
+			res.redirect("/admin/dashboard");
+		}
 	},
 	viewCategory: async (req, res) => {
 		try {
